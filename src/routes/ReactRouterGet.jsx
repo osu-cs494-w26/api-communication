@@ -5,7 +5,6 @@ export default function FetchGet() {
 
     return (
         <>
-            <h1>HTTP GET with React Router Loaders</h1>
             <h2>GitHub Repos for {org}</h2>
             <main>
                 {/* Render repos here... */}

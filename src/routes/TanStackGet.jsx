@@ -5,7 +5,6 @@ export default function TanStackGet() {
 
     return (
         <>
-            <h1>HTTP GET with TanStack Query</h1>
             <h2>GitHub Repos for {org}</h2>
             <main>
                 {/* Render repos here... */}

@@ -4,6 +4,7 @@ import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 
 import Root from './routes/Root'
+import GetRoot from './routes/GetRoot'
 import FetchGet from './routes/FetchGet'
 import FetchPost from './routes/FetchPost'
 import TanStackGet from './routes/TanStackGet'
@@ -18,12 +19,45 @@ const router = createBrowserRouter([
         path: "/",
         Component: Root,
         children: [
-            { path: "fetch-get/:org", Component: FetchGet },
-            { path: "fetch-post", Component: FetchPost },
-            { path: "tanstack-get/:org", Component: TanStackGet },
-            { path: "tanstack-post", Component: TanStackPost },
-            { path: "react-router-get/:org", Component: ReactRouterGet },
-            { path: "react-router-post", Component: ReactRouterPost },
+            {
+                path: "fetch",
+                children: [
+                    {
+                        path: "get",
+                        element: <GetRoot framework="fetch()" />,
+                        children: [
+                            { path: ":org", Component: FetchGet }
+                        ]
+                    },
+                    { path: "post", Component: FetchPost }
+                ]
+            },
+            {
+                path: "tanstack",
+                children: [
+                    {
+                        path: "get",
+                        element: <GetRoot framework="TanStack Query" />,
+                        children: [
+                            { path: ":org", Component: TanStackGet }
+                        ]
+                    },
+                    { path: "post", Component: TanStackPost }
+                ]
+            },
+            {
+                path: "react-router",
+                children: [
+                    {
+                        path: "get",
+                        element: <GetRoot framework="React Router loaders" />,
+                        children: [
+                            { path: ":org", Component: ReactRouterGet }
+                        ]
+                    },
+                    { path: "post", Component: ReactRouterPost }
+                ]
+            }
         ]
     }
 ])
