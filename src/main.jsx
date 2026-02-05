@@ -10,8 +10,8 @@ import FetchGet from './routes/FetchGet'
 import FetchPost from './routes/FetchPost'
 import TanStackGet from './routes/TanStackGet'
 import TanStackPost from './routes/TanStackPost'
-import ReactRouterGet from './routes/ReactRouterGet'
-import ReactRouterPost from './routes/ReactRouterPost'
+import ReactRouterGet, { loader } from './routes/ReactRouterGet'
+import ReactRouterPost, { action } from './routes/ReactRouterPost'
 
 import './index.css'
 
@@ -55,10 +55,18 @@ const router = createBrowserRouter([
                         path: "get",
                         element: <GetRoot framework="React Router loaders" />,
                         children: [
-                            { path: ":org", Component: ReactRouterGet }
+                            {
+                                path: ":org",
+                                Component: ReactRouterGet,
+                                loader: loader
+                            }
                         ]
                     },
-                    { path: "post", Component: ReactRouterPost }
+                    {
+                        path: "post",
+                        Component: ReactRouterPost,
+                        action: action
+                    }
                 ]
             }
         ]
